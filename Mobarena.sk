@@ -1,0 +1,342 @@
+
+options:
+	wave-1: 240
+	wave-2: 230
+	wave-3: 210
+	wave-4: 200
+	wave-5: 185
+	wave-6: 180
+	wave-7: 170
+	wave-8: 166
+	wave-9: 159
+	wave-10: 150
+	wave-11: 143
+	wave-12: 136
+	wave-13: 128
+	wave-14: 121
+	wave-15: 115
+	mobarena: location(-111, 63, 70)
+	spawn: location(-111, 63, 70)
+	region-name: Mobarena
+	spawner-name: Spawner0
+	spawner-name1: Spawner
+	spawner-name2: Spawner1
+	spawner-name3: Spawner2
+	spawner-name4: Spawner3
+	spawner-name5: Spawner4
+	spawner-name6: Spawner5
+	spawner-name7: Spawner6
+	spawner-name8: Spawner7
+	spawner-name9: Spawner8
+	spawner-name10: Spawner9
+	spawner-name11: Spawner10
+	spawner-name12: Spawner11
+	spawner-name13: Spawner12
+	spawner-name14: Spawner13
+	spawner-name15: Spawner14
+
+command /mobarena:
+	aliases: /ma, /moba
+	trigger:
+		set {p} to player
+		delete {inventories.%{p}%.items::*}
+		delete {inventories.%{p}%.armor::*}
+		set {inventories.%player's uuid%.items::*} to items in player's inventory
+		set {inventories.%player's uuid%.helmet} to player's helmet
+		set {inventories.%player's uuid%.chest} to player's chestplate
+		set {inventories.%player's uuid%.legs} to player's leggings
+		set {inventories.%player's uuid%.boots} to player's boots
+		wait a tick
+		clear player's inventory
+		teleport player to {@mobarena}
+		set player's helmet to iron helmet
+		set player's chestplate to iron chestplate
+		set player's leggings to iron leggings
+		set player's boots to iron boots
+		wait 1 tick
+		give 1 iron sword to player
+		give 1 crossbow to player
+		give 10 steak to player
+		give 2 golden apple to player
+		give potion of strength to the player
+		wait 1 tick
+		give 64 arrow to player
+		set player's gamemode to survival
+
+on tab complete of "/mobadmin":
+	set tab completions for position 1 to "wave", "stop", "restart"
+	if tab arg-1 = "wave":
+		set tab completions for position 2 to "1-15"
+
+on death:
+	victim is a player
+	if "%region at player's location%" contains "{@region-name}":
+		set player's gamemode to spectator
+		loop all players:
+			if "%region at loop-player's location%" contains "{@region-name}":
+				send "&7>>> &4Player &l%victim% &rhas been eliminated!" to loop-player
+		wait 3 second
+		teleport player to {@mobarena}
+		
+command /mobainfo:
+	trigger:
+		send "&6Skript by &cAgent&7Craft"
+
+command /mobadmin [<string>] [<string>]:
+	permission: moba.admin
+	trigger:
+		if arg-1 is "wave":
+			if arg-2 is "1":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-1}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-1}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 1" to loop-player
+			else if arg-2 is "2":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-2}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-2}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 2" to loop-player
+			else if arg-2 is "3":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-3}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-3}"				
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 3" to loop-player
+			else if arg-2 is "4":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-4}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-4}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 4" to loop-player
+			else if arg-2 is "5":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-5}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-5}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 5" to loop-player
+			else if arg-2 is "6":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-6}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-6}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 6" to loop-player
+			else if arg-2 is "7":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-7}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-7}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 7" to loop-player
+			else if arg-2 is "8":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-8}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-8}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 8" to loop-player
+			else if arg-2 is "9":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-9}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-9}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 9" to loop-player
+			else if arg-2 is "10":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-10}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-10}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 10" to loop-player
+			else if arg-2 is "11":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-11}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-11}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 11" to loop-player
+			else if arg-2 is "12":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-12}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-12}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 12" to loop-player
+			else if arg-2 is "13":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-13}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-13}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 13" to loop-player
+			else if arg-2 is "14":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-14}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-14}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 14" to loop-player
+			else if arg-2 is "15":
+				execute console command "mm spawners set {@spawner-name} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name1} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name2} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name3} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name4} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name5} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name6} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name7} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name8} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name9} cooldown {@wave-15}"
+				execute console command "mm spawners set {@spawner-name10} cooldown {@wave-15}"
+				loop all players:
+					if "%region at loop-player's location%" contains "{@region-name}":
+						send "&cMobarena: &7The next wave: &7&l Wave 15" to loop-player
+		if arg-1 is "stop":
+			execute console command "mm spawners set {@spawner-name} cooldown 86400"
+			send "&4Mobarena has been stopped, teleporting players to spawn..."
+			loop all players:
+				if "%region at loop-player's location%" contains "{@region-name}":
+					clear loop-player's inventory
+					teleport loop-player to {@spawn}
+					set loop-player's gamemode to survival
+					wait 1 tick
+					set {p} to player
+					clear the player's inventory
+					give player {inventories.%player's uuid%.items::*}
+					equip player with {inventories.%player's uuid%.helmet}
+					equip player with {inventories.%player's uuid%.chestplate}
+					equip player with {inventories.%player's uuid%.legs}
+					equip player with {inventories.%player's uuid%.boots}
+		if arg-1 is "restart":
+			execute console command "mobadmin stop"
+			execute console command "mm spawners set {@spawner-name} cooldown {@wave-1}"
+			execute console command "mm mobs killall"
+			loop all players:
+				if "%region at loop-player's location%" contains "{@region-name}":
+					send "&7>>> &6Mobarena restarted! &l/mobarena &rto join &8(Wave 1)" to loop-player			
+		if arg-1 is not set:
+			send "&cUsage: /mobadmin wave/stop/restart (1-15)"
+		else if arg-1 is "wave":
+			if arg-2 is not set:
+				send "&cUsage: /mobadmin wave/stop/restart (1-15)"
+				
